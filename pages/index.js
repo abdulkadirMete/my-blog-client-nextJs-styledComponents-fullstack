@@ -1,10 +1,17 @@
-import styled from 'styled-components'
-
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colors.primary};
-`
+import Hero from "../components/hero/Hero";
+import Navbar from "../components/navbar/Navbar";
+import Posts from "../components/posts/Posts";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Footer from "../components/footer/Footer";
 
 export default function Home() {
-  return <Title>My page</Title>
+  return (
+    <>
+      <Navbar />
+      <Hero />
+      <Posts />
+      <Footer />
+    </>
+  );
 }
