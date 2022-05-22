@@ -1,7 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../styles/GlobalStyles";
 import { theme } from "../styles/variables";
-import { wrapper } from "../redux/store";
+import { wrapper } from "../app/store";
 
 function App({ Component, pageProps }) {
   return (

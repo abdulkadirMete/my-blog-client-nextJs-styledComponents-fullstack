@@ -1,4 +1,10 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { BsFillLockFill, BsFillPersonFill } from "react-icons/bs";
+import * as yup from "yup";
+import { login } from "../../app/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 import {
   ErrorMessage,
   LoginButton,
@@ -10,19 +16,17 @@ import {
   LoginSection,
   LoginWrapper,
 } from "./LoginStyles";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-
-import { BsFillPersonFill, BsFillLockFill } from "react-icons/bs";
-import { login } from "../../redux/actions/auth";
-import { useSelector } from "react-redux";
 
 const Login = () => {
-  const { user, isLoading } = useSelector((state) => state);
+  const { user, isLoading, error } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(user);
+    if (user) {
+      console.log(user);
+    } else {
+      console.log(error);
+    }
   }, [user]);
 
   const loginSchema = yup.object().shape({
@@ -38,8 +42,9 @@ const Login = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (user) => {
-    login(user);
+  const onSubmit = (userInfo) => {
+    console.log("click");
+    dispatch(login(userInfo));
   };
 
   if (isLoading) {
