@@ -1,8 +1,9 @@
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../styles/GlobalStyles";
 import { theme } from "../styles/variables";
+import { wrapper } from "../redux/store";
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
@@ -10,3 +11,5 @@ export default function App({ Component, pageProps }) {
     </ThemeProvider>
   );
 }
+
+export default wrapper.withRedux(App);
